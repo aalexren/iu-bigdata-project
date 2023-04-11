@@ -12,6 +12,11 @@ printf "Create database...\n"
 PGPASSWORD=proven psql -U postgres < $FILE
 printf "Success!\n\n\n"
 
+FILE="$parentdir"/sql/drop_tables.sql
+printf "Drop tables...\n"
+PGPASSWORD=proven psql -U postgres < $FILE
+printf "Success!\n\n\n"
+
 FILE="$parentdir"/sql/create_tables.sql
 printf "Create tables...\n"
 PGPASSWORD=proven psql -U postgres < $FILE
