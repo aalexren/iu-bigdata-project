@@ -31,13 +31,3 @@ printf "Downloading complete!\n\n\n"
 printf "Installing requirements...\n\n\n"
 pip install -r requirements.txt
 printf "Success!\n\n\n"
-
-FILE="$parentdir"/sql/drop_database.sql
-printf "Drop database...\n\n\n"
-PGPASSWORD=proven psql -U postgres < $FILE
-printf "Success!\n\n\n"
-
-FILE="$parentdir"/sql/create_database.sql
-printf "Create database...\n\n\n"
-PGPASSWORD=proven psql -U postgres < $FILE
-printf "Success!\n\n\n"
