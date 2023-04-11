@@ -1,3 +1,5 @@
+\c project;
+
 CREATE TABLE IF NOT EXISTS application_data (
     SK_ID_CURR BIGINT UNIQUE,
     TARGET BIGINT,
