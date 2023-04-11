@@ -1,5 +1,7 @@
 #!/bin/bash
 
+parentdir=`pwd`
+
 FILE="$parentdir"/sql/drop_database.sql
 printf "Drop database...\n\n\n"
 PGPASSWORD=proven psql -U postgres < $FILE
