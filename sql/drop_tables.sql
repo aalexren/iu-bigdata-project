@@ -1,2 +1,4 @@
-drop table if exists application_data cascade ;
-drop table if exists previous_application cascade ;
+\c project;
+
+DROP TABLE IF EXISTS application_data CASCADE;
+DROP TABLE IF EXISTS previous_application CASCADE;
