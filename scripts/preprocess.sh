@@ -27,3 +27,7 @@ wget previous_application.csv -P "$parentdir"/data/ https://media.githubusercont
 printf "Done.\n\n"
 
 printf "Downloading complete!\n\n\n"
+
+printf "Installing requirements...\n\n\n"
+pip install -r requirements.txt
+printf "Done.\n\n\n"
