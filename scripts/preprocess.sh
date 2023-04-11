@@ -28,6 +28,6 @@ printf "Success!\n\n"
 
 printf "Downloading complete!\n\n\n"
 
-printf "Installing requirements...\n\n\n"
+printf "Installing requirements..."
 pip install -r requirements.txt
 printf "Success!\n\n\n"
