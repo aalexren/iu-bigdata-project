@@ -1,1 +1,7 @@
 .DS_Store
+
+# pyenv default python version
+.python-version
+
+# data files are stored in chunks
+*.csv

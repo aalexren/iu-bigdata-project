@@ -3,36 +3,36 @@
 parentdir=`pwd`
 
 FILE="$parentdir"/sql/drop_database.sql
-printf "Drop database...\n"
+printf "DROP DATABASE\n"
 PGPASSWORD=proven psql -U postgres < $FILE
-printf "Success!\n\n\n"
+printf "SUCCESS!\n\n\n"
 
 FILE="$parentdir"/sql/create_database.sql
-printf "Create database...\n"
+printf "CREATE DATABASE...\n"
 PGPASSWORD=proven psql -U postgres < $FILE
-printf "Success!\n\n\n"
+printf "SUCCESS!\n\n\n"
 
 FILE="$parentdir"/sql/drop_tables.sql
-printf "Drop tables...\n"
+printf "DROP TABLES\n"
 PGPASSWORD=proven psql -U postgres < $FILE
-printf "Success!\n\n\n"
+printf "SUCCESS!\n\n\n"
 
 FILE="$parentdir"/sql/create_tables.sql
-printf "Create tables...\n"
+printf "CREATE TABLES\n"
 PGPASSWORD=proven psql -U postgres < $FILE
-printf "Success!\n\n\n"
+printf "SUCCESS!\n\n\n"
 
-printf "Load data from csv files...\n"
-printf "Set datetime format...\n"
+printf "LOAD DATA FROM CSV FILES\n"
+printf "SET DATETIME FORMAT\n"
 PGPASSWORD=proven psql -U postgres \
     -d project \
     -c "SET datestyle TO iso, ymd;"
-printf "Load application_data.csv...\n"
+printf "LOAD application_data.csv\n"
 PGPASSWORD=proven psql -U postgres \
     -d project \
     -c "\COPY application_data FROM "$parentdir"/data/application_data.csv DELIMITER ',' CSV HEADER;"
-printf "Load previous_application.csv...\n"
+printf "LOAD previous_application.csv\n"
 PGPASSWORD=proven psql -U postgres \
     -d project \
     -c "\COPY previous_application FROM "$parentdir"/data/previous_application.csv DELIMITER ',' CSV HEADER;"
-printf "Success!\n\n\n"
+printf "SUCCESS!\n\n\n"
