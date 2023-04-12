@@ -31,6 +31,17 @@ fi
 python "$parent_dir/scripts/data/load.py" $data_dir $DIR
 printf "\n\n\n"
 
+DIR="$parent_dir/data/previous_application"
+FILE="$DIR.csv"
+if test -f "$FILE"; then
+    printf "$FILE EXISTS!\n"
+    printf "REMOVE $FILE!\n"
+    rm -f $FILE
+    printf "SUCCESS!\n"
+fi
+python "$parent_dir/scripts/data/load.py" $data_dir $DIR
+printf "\n\n\n"
+
 printf "REMOVE UNCONSTRAINED DATA\n"
 python "$parent_dir/scripts/data/preprocess.py" $data_dir
 printf "SUCCESS!\n"
