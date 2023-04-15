@@ -20,4 +20,4 @@ print "DELETE NOT EXISTING VALUES"
 pre_appl_df = pre_appl_df[pre_appl_df["SK_ID_CURR"].isin(app_data_df["SK_ID_CURR"])]
 
 print "SAVE NEW CSV TO %s" % (FILES[1])
-pre_appl_df.to_csv(os.path.join(DATA_DIR, FILES[1]))
+pre_appl_df.to_csv(os.path.join(DATA_DIR, FILES[1]), index=False)
