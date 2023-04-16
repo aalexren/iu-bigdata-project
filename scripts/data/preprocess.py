@@ -3,6 +3,7 @@ Preprocess data frames using pandas.
 """
 import os
 import sys
+
 import pandas as pd
 
 DATA_DIR = sys.argv[1]

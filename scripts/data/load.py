@@ -4,8 +4,8 @@ Compiles data files from chunks.
 :source: https://www.oreilly.com/library/view/programming-python-second/0596000855/ch04s02.html
 """
 
-import sys
 import os
+import sys
 
 readsize = 1024
 
