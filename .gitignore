@@ -5,3 +5,6 @@
 
 # data files are stored in chunks
 *.csv
+
+__pycache__
+*.pyc
