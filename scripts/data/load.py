@@ -25,18 +25,18 @@ def join(fromdir, tofile):
 
 
 if len(sys.argv) < 3:
-    print "NO PASSED PATH TO DATA DIRECTORY!"
+    print("NO PASSED PATH TO DATA DIRECTORY!")
     sys.exit(1)
 
 data_dir = sys.argv[1]
 file_dir = os.path.join(data_dir, sys.argv[2])
 
 if not os.path.exists(file_dir):
-    print "DIRECTORY %s DOESN'T EXISTS!" % (file_dir)
+    print("DIRECTORY %s DOESN'T EXISTS!" % (file_dir))
     sys.exit(1)
 
 file_csv = os.path.join(data_dir, "%s.csv" % (file_dir))
 
-print "COMPILE %s..." % (file_csv)
+print("COMPILE %s..." % (file_csv))
 join(file_dir, file_csv)
-print "SUCCESS!"
+print("SUCCESS!")

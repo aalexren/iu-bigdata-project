@@ -1,7 +1,8 @@
 #!/bin/bash
 
-parent_dir=`pwd`
+parent_dir=`pwd` # root of project
 data_dir="$parent_dir/data/"
+out_dir="$parent_dir/output/"
 
 printf "PREPARE DATA FILES\n\n\n"
 
@@ -33,5 +34,11 @@ printf "\n\n\n"
 
 printf "REMOVE UNCONSTRAINED DATA\n"
 python "$parent_dir/scripts/data/preprocess.py" $data_dir
+printf "SUCCESS!\n"
+printf "\n\n\n"
+
+printf "MOVE FILES TO OUTPUT FOLDER\n"
+mv "$data_dir/application_data.csv" "$out_dir/application_data.csv"
+mv "$data_dir/previous_application.csv" "$out_dir/previous_application.csv"
 printf "SUCCESS!\n"
 printf "\n\n\n"
