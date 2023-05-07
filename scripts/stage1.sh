@@ -38,7 +38,6 @@ PGPASSWORD=proven psql -U postgres \
 printf "SUCCESS!\n\n\n"
 
 printf "LOAD DATA TO HDFS BY SQOOP\n"
-hdfs dfs -rm -r /project
 sqoop import-all-tables \
     -Dmapreduce.job.user.classpath.first=true \
     --connect jdbc:postgresql://localhost/project \

@@ -42,3 +42,16 @@ mv "$data_dir/application_data.csv" "$out_dir/application_data.csv"
 mv "$data_dir/previous_application.csv" "$out_dir/previous_application.csv"
 printf "SUCCESS!\n"
 printf "\n\n\n"
+
+printf "PUT FILES TO HDFS\n"
+printf "REMOVE project FOLDER\n"
+hdfs dfs -rm -r /project
+printf "CREATE project FOLDER\n"
+hdfs dfs -mkdir /project
+printf "REMOVE csv FOLDER\n"
+hdfs dfs -mkdir /project/csv
+printf "PUT FILES TO csv FOLDER\n"
+hdfs dfs -put application_data.csv /project/csv/
+hdfs dfs -put previous_application.csv /project/csv/
+printf "SUCCESS!\n"
+printf "\n\n\n"
