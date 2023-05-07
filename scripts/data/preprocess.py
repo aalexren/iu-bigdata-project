@@ -13,12 +13,12 @@ DATA_DIR = sys.argv[1]
 FILES = ["application_data.csv", "previous_application.csv"]
 
 print("READ %s" % (FILES[0]))
-app_data_df = pd.read_csv(os.path.join(DATA_DIR, FILES[0]))
+APP_DATA_DF = pd.read_csv(os.path.join(DATA_DIR, FILES[0]))
 print("READ %s" % (FILES[1]))
-pre_appl_df = pd.read_csv(os.path.join(DATA_DIR, FILES[1]))
+PRE_APPL_DF = pd.read_csv(os.path.join(DATA_DIR, FILES[1]))
 
 print("DELETE NOT EXISTING VALUES")
-pre_appl_df = pre_appl_df[pre_appl_df["SK_ID_CURR"].isin(app_data_df["SK_ID_CURR"])]
+PRE_APPL_DF = PRE_APPL_DF[PRE_APPL_DF["SK_ID_CURR"].isin(APP_DATA_DF["SK_ID_CURR"])]
 
 print("SAVE NEW CSV TO %s" % (FILES[1]))
-pre_appl_df.to_csv(os.path.join(DATA_DIR, FILES[1]), index=False)
+PRE_APPL_DF.to_csv(os.path.join(DATA_DIR, FILES[1]), index=False)
