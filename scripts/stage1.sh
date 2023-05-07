@@ -37,7 +37,7 @@ PGPASSWORD=proven psql -U postgres \
     -c "\COPY previous_application FROM "$parentdir"/output/previous_application.csv DELIMITER ',' CSV HEADER;"
 printf "SUCCESS!\n\n\n"
 
-printf "LOAD DATA TO HDFS BY SQOOP"
+printf "LOAD DATA TO HDFS BY SQOOP\n"
 hdfs dfs -rm -r /project
 sqoop import-all-tables \
     -Dmapreduce.job.user.classpath.first=true \
