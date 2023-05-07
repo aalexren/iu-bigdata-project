@@ -42,8 +42,8 @@ if not os.path.exists(FILE_DIR):
     print("DIRECTORY %s DOESN'T EXISTS!" % (FILE_DIR))
     sys.exit(1)
 
-file_csv = os.path.join(DATA_DIR, "%s.csv" % (FILE_DIR))
+FILE_CSV = os.path.join(DATA_DIR, "%s.csv" % (FILE_DIR))
 
-print("COMPILE %s..." % (file_csv))
-join(FILE_DIR, file_csv)
+print("COMPILE %s..." % (FILE_CSV))
+join(FILE_DIR, FILE_CSV)
 print("SUCCESS!")

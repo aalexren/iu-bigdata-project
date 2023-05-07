@@ -15,7 +15,7 @@ CHUNKSIZE = int(1.4 * MEGABYTES)  # default: roughly a floppy
 
 def split(fromfile, todir, chunksize=CHUNKSIZE):
     """Dummy docstring."""
-    
+
     if not os.path.exists(todir):  # caller handles errors
         os.mkdir(todir)  # make dir, read/write parts
     else:
@@ -23,9 +23,9 @@ def split(fromfile, todir, chunksize=CHUNKSIZE):
             os.remove(os.path.join(todir, fname))
     partnum = 0
 
-    f = open(fromfile, "rb")  # use binary mode on Windows
+    file_ = open(fromfile, "rb")  # use binary mode on Windows
     while 1:  # eof=empty string from read
-        chunk = f.read(chunksize)  # get next part <= chunksize
+        chunk = file_.read(chunksize)  # get next part <= chunksize
         if not chunk:
             break
         partnum = partnum + 1
@@ -33,6 +33,6 @@ def split(fromfile, todir, chunksize=CHUNKSIZE):
         fileobj = open(filename, "wb")
         fileobj.write(chunk)
         fileobj.close()  # or simply open(  ).write(  )
-    f.close()
+    file_.close()
 
     return partnum
