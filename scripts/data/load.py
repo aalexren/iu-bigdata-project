@@ -4,10 +4,13 @@ Compiles data files from chunks.
 :source: https://www.oreilly.com/library/view/programming-python-second/0596000855/ch04s02.html
 """
 
+from __future__ import print_function
+
 import os
 import sys
 
-readsize = 1024
+
+READSIZE = 1024
 
 
 def join(fromdir, tofile):
@@ -18,7 +21,7 @@ def join(fromdir, tofile):
         filepath = os.path.join(fromdir, filename)
         fileobj = open(filepath, "rb")
         while 1:
-            filebytes = fileobj.read(readsize)
+            filebytes = fileobj.read(READSIZE)
             if not filebytes:
                 break
             output.write(filebytes)
