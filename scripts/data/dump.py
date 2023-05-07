@@ -14,6 +14,8 @@ CHUNKSIZE = int(1.4 * MEGABYTES)  # default: roughly a floppy
 
 
 def split(fromfile, todir, chunksize=CHUNKSIZE):
+    """Dummy docstring."""
+    
     if not os.path.exists(todir):  # caller handles errors
         os.mkdir(todir)  # make dir, read/write parts
     else:

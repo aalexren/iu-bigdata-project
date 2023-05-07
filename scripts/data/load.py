@@ -14,6 +14,8 @@ READSIZE = 1024
 
 
 def join(fromdir, tofile):
+    """Dummy docstring."""
+
     output = open(tofile, "wb")
     parts = os.listdir(fromdir)
     parts.sort()
@@ -33,15 +35,15 @@ if len(sys.argv) < 3:
     print("NO PASSED PATH TO DATA DIRECTORY!")
     sys.exit(1)
 
-data_dir = sys.argv[1]
-file_dir = os.path.join(data_dir, sys.argv[2])
+DATA_DIR = sys.argv[1]
+FILE_DIR = os.path.join(DATA_DIR, sys.argv[2])
 
-if not os.path.exists(file_dir):
-    print("DIRECTORY %s DOESN'T EXISTS!" % (file_dir))
+if not os.path.exists(FILE_DIR):
+    print("DIRECTORY %s DOESN'T EXISTS!" % (FILE_DIR))
     sys.exit(1)
 
-file_csv = os.path.join(data_dir, "%s.csv" % (file_dir))
+file_csv = os.path.join(DATA_DIR, "%s.csv" % (FILE_DIR))
 
 print("COMPILE %s..." % (file_csv))
-join(file_dir, file_csv)
+join(FILE_DIR, file_csv)
 print("SUCCESS!")
