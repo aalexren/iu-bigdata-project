@@ -36,3 +36,18 @@ PGPASSWORD=proven psql -U postgres \
     -d project \
     -c "\COPY previous_application FROM "$parentdir"/data/previous_application.csv DELIMITER ',' CSV HEADER;"
 printf "SUCCESS!\n\n\n"
+
+printf "LOAD DATA TO HDFS BY SQOOP"
+hdfs dfs -rm -r /project
+sqoop import-all-tables \
+    -Dmapreduce.job.user.classpath.first=true \
+    --connect jdbc:postgresql://localhost/project \
+    --username postgres \
+    --password proven \
+    --warehouse-dir /project \
+    --as-avrodatafile \
+    --compression-codec=snappy \
+    --outdir ./output/avsc \
+    --m 1
+hdfs dfs -put ./output/avsc /project/avsc
+printf "SUCCESS!\n\n\n"
