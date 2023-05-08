@@ -3,17 +3,16 @@ DROP DATABASE IF EXISTS projectdb CASCADE;
 CREATE DATABASE projectdb;
 USE projectdb;
 
-
 SET mapreduce.map.output.compress = true;
 SET mapreduce.map.output.compress.codec = org.apache.hadoop.io.compress.SnappyCodec;
 
 -- LOAD TABLES TO HIVE
 CREATE EXTERNAL TABLE application_data
-STORED AS AVRO LOCATION '/project/projectdb/application_data'
+STORED AS AVRO LOCATION '/project/application_data'
 TBLPROPERTIES ('avro.schema.url'='/project/avsc/application_data.avsc');
 
 CREATE EXTERNAL TABLE previous_application
-STORED AS AVRO LOCATION '/project/projectdb/previous_application'
+STORED AS AVRO LOCATION '/project/previous_application'
 TBLPROPERTIES ('avro.schema.url'='/project/avsc/previous_application.avsc');
 
 -- CHECK EVERYTHING IS LOADED CORRECTLY
@@ -26,7 +25,6 @@ SET hive.enforce.bucketing=true;
 
 DROP TABLE IF EXISTS application_data_part;
 DROP TABLE IF EXISTS previous_application_part;
-
 
 -- CREATE PARTITIONED TABLES FROM HIVE TABLES
 CREATE EXTERNAL TABLE application_data_part (
