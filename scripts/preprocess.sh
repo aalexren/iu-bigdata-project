@@ -51,7 +51,7 @@ hdfs dfs -mkdir /project
 printf "REMOVE csv FOLDER\n"
 hdfs dfs -mkdir /project/csv
 printf "PUT FILES TO csv FOLDER\n"
-hdfs dfs -put application_data.csv /project/csv/
-hdfs dfs -put previous_application.csv /project/csv/
+hdfs dfs -put "$parent_dir"/output/application_data.csv /project/csv/
+hdfs dfs -put "$parent_dir/output/previous_application.csv /project/csv/
 printf "SUCCESS!\n"
 printf "\n\n\n"
