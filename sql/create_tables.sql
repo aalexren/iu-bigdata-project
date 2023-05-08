@@ -165,6 +165,6 @@ CREATE TABLE IF NOT EXISTS previous_application (
     NFLAG_INSURED_ON_APPROVAL DOUBLE PRECISION
 );
 
-ALTER TABLE previous_application
-ADD CONSTRAINT fk_prev_app_data
-FOREIGN KEY (SK_ID_CURR) REFERENCES application_data (SK_ID_CURR);
+-- ALTER TABLE previous_application
+-- ADD CONSTRAINT fk_prev_app_data
+-- FOREIGN KEY (SK_ID_CURR) REFERENCES application_data (SK_ID_CURR);
