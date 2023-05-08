@@ -18,7 +18,10 @@ print("READ %s" % (FILES[1]))
 PRE_APPL_DF = pd.read_csv(os.path.join(DATA_DIR, FILES[1]))
 
 print("DELETE NOT EXISTING VALUES")
-PRE_APPL_DF = PRE_APPL_DF[PRE_APPL_DF["SK_ID_CURR"].isin(APP_DATA_DF["SK_ID_CURR"])]
+PRE_APPL_DF.drop(
+    PRE_APPL_DF[PRE_APPL_DF["SK_ID_CURR"].isin(APP_DATA_DF["SK_ID_CURR"])].index,
+    inplace=True,
+)
 
 print("SAVE NEW CSV TO %s" % (FILES[1]))
 PRE_APPL_DF.to_csv(os.path.join(DATA_DIR, FILES[1]), index=False)
