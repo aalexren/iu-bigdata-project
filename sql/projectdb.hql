@@ -1,18 +1,13 @@
-SET mapreduce.map.output.compress = true;
-SET mapreduce.map.output.compress.codec = org.apache.hadoop.io.compress.SnappyCodec;
-
-SET hive.exec.dynamic.partition = true;
-SET hive.exec.dynamic.partition.mode = nonstrict;
-SET hive.enforce.bucketing=true;
-
 DROP DATABASE IF EXISTS projectdb CASCADE;
-
-DROP TABLE IF EXISTS application_data_part;
-DROP TABLE IF EXISTS previous_application_part;
 
 CREATE DATABASE projectdb;
 USE projectdb;
 
+
+SET mapreduce.map.output.compress = true;
+SET mapreduce.map.output.compress.codec = org.apache.hadoop.io.compress.SnappyCodec;
+
+-- LOAD TABLES TO HIVE
 CREATE EXTERNAL TABLE application_data
 STORED AS AVRO LOCATION '/project/projectdb/application_data'
 TBLPROPERTIES ('avro.schema.url'='/project/avsc/application_data.avsc');
@@ -21,6 +16,19 @@ CREATE EXTERNAL TABLE previous_application
 STORED AS AVRO LOCATION '/project/projectdb/previous_application'
 TBLPROPERTIES ('avro.schema.url'='/project/avsc/previous_application.avsc');
 
+-- CHECK EVERYTHING IS LOADED CORRECTLY
+SELECT COUNT(*) FROM application_data;
+SELECT COUNT(*) FROM previous_application;
+
+SET hive.exec.dynamic.partition = true;
+SET hive.exec.dynamic.partition.mode = nonstrict;
+SET hive.enforce.bucketing=true;
+
+DROP TABLE IF EXISTS application_data_part;
+DROP TABLE IF EXISTS previous_application_part;
+
+
+-- CREATE PARTITIONED TABLES FROM HIVE TABLES
 CREATE EXTERNAL TABLE application_data_part (
     SK_ID_CURR BIGINT,
     CNT_CHILDREN BIGINT,
