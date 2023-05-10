@@ -30,11 +30,11 @@ PGPASSWORD=proven psql -U postgres \
 printf "LOAD application_data.csv\n"
 PGPASSWORD=proven psql -U postgres \
     -d project \
-    -c "\COPY application_data FROM "$parentdir/output/application_data.csv" DELIMITER ',' CSV HEADER null as 'null';"
+    -c "\COPY application_data FROM "$parentdir/output/application_data.csv" DELIMITER ',' CSV HEADER;"
 printf "LOAD previous_application.csv\n"
 PGPASSWORD=proven psql -U postgres \
     -d project \
-    -c "\COPY previous_application FROM "$parentdir/output/previous_application.csv" DELIMITER ',' CSV HEADER null as 'null';"
+    -c "\COPY previous_application FROM "$parentdir/output/previous_application.csv" DELIMITER ',' CSV HEADER;"
 printf "SUCCESS!\n\n\n"
 
 printf "LOAD DATA TO HDFS BY SQOOP\n"
