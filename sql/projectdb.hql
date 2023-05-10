@@ -6,10 +6,8 @@ USE projectdb;
 SET mapreduce.map.output.compress = true;
 SET mapreduce.map.output.compress.codec = org.apache.hadoop.io.compress.SnappyCodec;
 
-TRUNCATE TABLE application_data;
-TRUNCATE TABLE previous_application;
--- DROP TABLE IF EXISTS application_data;
--- DROP TABLE IF EXISTS previous_application;
+DROP TABLE IF EXISTS application_data;
+DROP TABLE IF EXISTS previous_application;
 
 -- LOAD TABLES TO HIVE
 CREATE EXTERNAL TABLE application_data
@@ -28,10 +26,8 @@ SET hive.exec.dynamic.partition = true;
 SET hive.exec.dynamic.partition.mode = nonstrict;
 SET hive.enforce.bucketing=true;
 
-TRUNCATE TABLE application_data_part;
-TRUNCATE TABLE previous_application_part;
--- DROP TABLE IF EXISTS application_data_part;
--- DROP TABLE IF EXISTS previous_application_part;
+DROP TABLE IF EXISTS application_data_part;
+DROP TABLE IF EXISTS previous_application_part;
 
 -- CREATE PARTITIONED TABLES FROM HIVE TABLES
 CREATE EXTERNAL TABLE application_data_part (
