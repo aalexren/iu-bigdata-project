@@ -19,8 +19,8 @@ STORED AS AVRO LOCATION '/project/previous_application'
 TBLPROPERTIES ('avro.schema.url'='/project/avsc/previous_application.avsc');
 
 -- CHECK EVERYTHING IS LOADED CORRECTLY
-SELECT COUNT(*) FROM application_data;
-SELECT COUNT(*) FROM previous_application;
+SELECT COUNT(1) FROM application_data;
+SELECT COUNT(1) FROM previous_application;
 
 SET hive.exec.dynamic.partition = true;
 SET hive.exec.dynamic.partition.mode = nonstrict;
