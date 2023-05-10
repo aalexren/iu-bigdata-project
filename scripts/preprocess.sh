@@ -6,9 +6,9 @@ out_dir="$parent_dir/output/"
 
 printf "PREPARE DATA FILES\n\n\n"
 
-printf "INSTALL PYTHON REQUIREMENTS\n"
-pip install -r requirements.txt
-printf "SUCCESS!\n\n\n"
+# printf "INSTALL PYTHON REQUIREMENTS\n"
+# pip install -r requirements.txt
+# printf "SUCCESS!\n\n\n"
 
 DIR="$parent_dir/data/application_data"
 FILE="$DIR.csv"
