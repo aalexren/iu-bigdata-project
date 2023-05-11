@@ -11,23 +11,13 @@ from pyspark.ml.feature import StringIndexer, Imputer, MinMaxScaler, VectorAssem
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 from pyspark.ml.classification import LogisticRegression, DecisionTreeClassifier
 
-spark = (
-    SparkSession.builder.appName("BD Project")
-    .master("local[4]")
-    .config("spark.driver.memory", "4g")
-    .config("spark.sql.catalogImplementation", "hive")
-    .config("hive.metastore.uris", "thrift://sandbox-hdp.hortonworks.com:9083")
-    .config("spark.sql.avro.compression.codec", "snappy")
-    .config(
-        "spark.jars",
-        "/usr/hdp/current/hive-client/lib/"\
-        "hive-metastore-1.2.1000.2.6.5.0-292.jar,"\
-        "/usr/hdp/current/hive-client/lib/hive-exec-1.2.1000.2.6.5.0-292.jar",
-    )
-    .config("spark.jars.packages", "org.apache.spark:spark-avro_2.11:2.4.4")
-    .enableHiveSupport()
-    .getOrCreate()
-)
+spark = SparkSession.builder\
+        .appName("BDT Project")\
+        .config("spark.sql.catalogImplementation","hive")\
+        .config("hive.metastore.uris", "thrift://sandbox-hdp.hortonworks.com:9083")\
+        .config("spark.sql.avro.compression.codec", "snappy")\
+        .enableHiveSupport()\
+        .getOrCreate()
 
 sc = spark.sparkContext
 sc.setLogLevel("OFF")
