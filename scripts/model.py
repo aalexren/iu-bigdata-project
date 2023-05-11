@@ -13,7 +13,6 @@ from pyspark.ml.classification import LogisticRegression, DecisionTreeClassifier
 
 spark = SparkSession.builder\
         .appName("BDT Project")\
-        .master("local[*]")\
         .config("spark.sql.catalogImplementation","hive")\
         .config("hive.metastore.uris", "thrift://sandbox-hdp.hortonworks.com:9083")\
         .config("spark.sql.avro.compression.codec", "snappy")\
