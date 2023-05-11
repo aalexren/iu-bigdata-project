@@ -2,7 +2,7 @@ USE projectdb;
 
 SET hive.exec.dynamic.partition = true;
 SET hive.exec.dynamic.partition.mode = nonstrict;
--- SET hive.enforce.bucketing=true;
+SET hive.enforce.bucketing=true;
 
 DROP TABLE IF EXISTS application_data_part;
 DROP TABLE IF EXISTS previous_application_part;
