@@ -42,6 +42,8 @@ app_data.createOrReplaceTempView("app_data")
 prev_app = spark.read.format("avro").table("projectdb.previous_application")
 prev_app.createOrReplaceTempView("prev_app")
 
+spark.sql("SELECT COUNT(1) FROM app_data WHERE obs_30_cnt_social_circle IS NULL;").show()
+
 categorical_features = [
     "name_contract_type",
     "code_gender",
