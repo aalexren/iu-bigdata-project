@@ -40,19 +40,19 @@ prev_app.createOrReplaceTempView("prev_app")
 app_data.printSchema()
 prev_app.printSchema()
 
-to_drop = [
-	'def_30_cnt_social_circle',
-	'cnt_children',
-	'region_population_relative',
-	'ext_source_2',
-	'days_birth',
-	'region_rating_client',
-	'amt_income_total',
-	'reg_region_not_live_region',
-	'totalarea_mode',
-	'obs_30_cnt_social_circle'
-]
-app_data = app_data.drop(*to_drop)
+# to_drop = [
+# 	'def_30_cnt_social_circle',
+# 	'cnt_children',
+# 	'region_population_relative',
+# 	'ext_source_2',
+# 	'days_birth',
+# 	'region_rating_client',
+# 	'amt_income_total',
+# 	'reg_region_not_live_region',
+# 	'totalarea_mode',
+# 	'obs_30_cnt_social_circle'
+# ]
+# app_data = app_data.drop(*to_drop)
 
 # spark.sql("SELECT COUNT(1) FROM app_data WHERE obs_30_cnt_social_circle IS NULL;").show()
 
