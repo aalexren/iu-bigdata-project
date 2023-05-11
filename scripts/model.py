@@ -35,7 +35,7 @@ prev_app.createOrReplaceTempView("prev_app")
 app_data.printSchema()
 prev_app.printSchema()
 
-spark.sql("SELECT COUNT(1) FROM app_data WHERE obs_30_cnt_social_circle IS NULL;").show()
+# spark.sql("SELECT COUNT(1) FROM app_data WHERE obs_30_cnt_social_circle IS NULL;").show()
 
 categorical_features = [
     "name_contract_type",
