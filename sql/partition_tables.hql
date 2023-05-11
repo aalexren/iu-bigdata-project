@@ -2,7 +2,7 @@ USE projectdb;
 
 SET hive.exec.dynamic.partition = true;
 SET hive.exec.dynamic.partition.mode = nonstrict;
-SET hive.enforce.bucketing=true;
+-- SET hive.enforce.bucketing=true;
 
 DROP TABLE IF EXISTS application_data_part;
 DROP TABLE IF EXISTS previous_application_part;
@@ -11,8 +11,6 @@ DROP TABLE IF EXISTS previous_application_part;
 CREATE EXTERNAL TABLE application_data_part (
     SK_ID_CURR INT,
     TARGET INT,
-    NAME_CONTRACT_TYPE_PART VARCHAR(100),
-    CODE_GENDER_PART VARCHAR(100),
     FLAG_OWN_CAR VARCHAR(100),
     FLAG_OWN_REALTY VARCHAR(100),
     CNT_CHILDREN INT,
@@ -136,14 +134,13 @@ PARTITIONED BY (
     NAME_CONTRACT_TYPE VARCHAR(100),
     CODE_GENDER VARCHAR(100)
 )
-CLUSTERED BY (TARGET) INTO 5 BUCKETS
+-- CLUSTERED BY (TARGET) INTO 5 BUCKETS
 STORED AS AVRO LOCATION '/project/projectdb/application_data_part'
 TBLPROPERTIES ('AVRO.COMPRESS'='SNAPPY');
 
 CREATE EXTERNAL TABLE previous_application_part (
     SK_ID_PREV INT,
     SK_ID_CURR INT,
-    NAME_CONTRACT_TYPE_PART VARCHAR(100),
     AMT_ANNUITY FLOAT,
     AMT_APPLICATION FLOAT,
     AMT_CREDIT FLOAT,
@@ -182,7 +179,7 @@ CREATE EXTERNAL TABLE previous_application_part (
 PARTITIONED BY (
     NAME_CONTRACT_TYPE VARCHAR(100)
 )
-CLUSTERED BY (SK_ID_PREV) INTO 5 BUCKETS
+-- CLUSTERED BY (SK_ID_PREV) INTO 5 BUCKETS
 STORED AS AVRO LOCATION '/project/projectdb/previous_application_part'
 TBLPROPERTIES ('AVRO.COMPRESS'='SNAPPY');
 
