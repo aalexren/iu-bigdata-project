@@ -16,7 +16,7 @@ spark = SparkSession.builder \
         .config("spark.sql.catalogImplementation", "hive")\
         .config("hive.metastore.uris", "thrift://sandbox-hdp.hortonworks.com:9083")\
         .config("spark.sql.avro.compression.codec", "snappy")\
-	.config(
+	    .config(
         	"spark.jars",
         	"/usr/hdp/current/hive-client/lib/hive-metastore-1.2.1000.2.6.5.0-292.jar,/usr/hdp/current/hive-client/lib/hive-exec-1.2.1000.2.6.5.0-292.jar",
     	) \
