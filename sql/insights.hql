@@ -1,5 +1,19 @@
 USE projectdb;
 
+-- q1
+WITH k AS (
+    SELECT 
+        COUNT(code_gender) as gc,
+        code_gender,
+        target
+    FROM application_data ad
+    GROUP BY code_gender, target
+)
+INSERT OVERWRITE LOCAL DIRECTORY 'output/q1'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+SELECT * FROM k;
+
 -- q2
 INSERT OVERWRITE LOCAL DIRECTORY 'output/q2'
 ROW FORMAT DELIMITED
