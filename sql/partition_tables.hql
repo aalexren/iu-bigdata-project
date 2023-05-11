@@ -183,7 +183,7 @@ CLUSTERED BY (SK_ID_PREV) INTO 5 BUCKETS
 STORED AS AVRO LOCATION '/project/projectdb/previous_application_part'
 TBLPROPERTIES ('AVRO.COMPRESS'='SNAPPY');
 
-INSERT OVERWRITE
+INSERT INTO
     application_data_part 
 PARTITION (
     NAME_CONTRACT_TYPE,
@@ -314,7 +314,7 @@ SELECT
     AMT_REQ_CREDIT_BUREAU_YEAR
 FROM application_data;
 
-INSERT OVERWRITE
+INSERT INTO
     previous_application_part 
 PARTITION (
     NAME_CONTRACT_TYPE
