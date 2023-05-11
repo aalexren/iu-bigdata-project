@@ -1,6 +1,9 @@
+"""some useful info
+"""
 from __future__ import print_function
 
 import pyspark.sql.functions as F
+from pyspark.sql import SparkSession
 
 from pyspark.ml import Pipeline
 from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
@@ -10,14 +13,16 @@ from pyspark.ml.classification import LogisticRegression, DecisionTreeClassifier
 
 spark = (
     SparkSession.builder.appName("BD Project")
-    .master("local[*]")
+    .master("local[4]")
     .config("spark.driver.memory", "4g")
     .config("spark.sql.catalogImplementation", "hive")
     .config("hive.metastore.uris", "thrift://sandbox-hdp.hortonworks.com:9083")
     .config("spark.sql.avro.compression.codec", "snappy")
     .config(
         "spark.jars",
-        "/usr/hdp/current/hive-client/lib/hive-metastore-1.2.1000.2.6.5.0-292.jar,/usr/hdp/current/hive-client/lib/hive-exec-1.2.1000.2.6.5.0-292.jar",
+        "/usr/hdp/current/hive-client/lib/"\
+        "hive-metastore-1.2.1000.2.6.5.0-292.jar,"\
+        "/usr/hdp/current/hive-client/lib/hive-exec-1.2.1000.2.6.5.0-292.jar",
     )
     .config("spark.jars.packages", "org.apache.spark:spark-avro_2.11:2.4.4")
     .enableHiveSupport()
@@ -97,9 +102,9 @@ model = pipeline.fit(app_data)
 data = model.transform(app_data)
 
 to_drop_cols = set(data.columns) - set(["target_imputed"])
-to_drop_cols = list(
-    filter(lambda x: not x[::-1].startswith("scaled"[::-1]), to_drop_cols)
-)
+to_drop_cols = [
+    x for x in to_drop_cols if not x[::-1].startswith("scaled"[::-1])
+]
 data = data.drop(*to_drop_cols)
 data = data.withColumnRenamed("target_imputed", "label")
 
