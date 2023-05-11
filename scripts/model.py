@@ -174,7 +174,7 @@ cv = CrossValidator(
     estimator=dt,
     estimatorParamMaps=grid,
     evaluator=roc_evaluator,
-    parallelism=2,
+    parallelism=4,
     numFolds=4,
 )
 cvModel = cv.fit(train_data)
