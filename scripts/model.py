@@ -11,12 +11,17 @@ from pyspark.ml.feature import StringIndexer, Imputer, MinMaxScaler, VectorAssem
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 from pyspark.ml.classification import LogisticRegression, DecisionTreeClassifier
 
-spark = SparkSession.builder\
+spark = SparkSession.builder \
         .appName("BDT Project")\
         .config("spark.sql.catalogImplementation", "hive")\
         .config("hive.metastore.uris", "thrift://sandbox-hdp.hortonworks.com:9083")\
         .config("spark.sql.avro.compression.codec", "snappy")\
-        .enableHiveSupport()\
+	.config(
+        	"spark.jars",
+        	"/usr/hdp/current/hive-client/lib/hive-metastore-1.2.1000.2.6.5.0-292.jar,/usr/hdp/current/hive-client/lib/hive-exec-1.2.1000.2.6.5.0-292.jar",
+    	) \
+    	.config("spark.jars.packages", "org.apache.spark:spark-avro_2.11:2.4.4") \
+        .enableHiveSupport() \
         .getOrCreate()
 
 sc = spark.sparkContext
@@ -26,14 +31,28 @@ print(spark.catalog.listDatabases())
 
 print(spark.catalog.listTables("projectdb"))
 
-app_data = spark.read.format("avro").table("projectdb.application_data")
+app_data = spark.read.format("avro").table("projectdb.application_data_part")
 app_data.createOrReplaceTempView("app_data")
 
-prev_app = spark.read.format("avro").table("projectdb.previous_application")
+prev_app = spark.read.format("avro").table("projectdb.previous_application_part")
 prev_app.createOrReplaceTempView("prev_app")
 
 app_data.printSchema()
 prev_app.printSchema()
+
+to_drop = [
+	'def_30_cnt_social_circle',
+	'cnt_children',
+	'region_population_relative',
+	'ext_source_2',
+	'days_birth',
+	'region_rating_client',
+	'amt_income_total',
+	'reg_region_not_live_region',
+	'totalarea_mode',
+	'obs_30_cnt_social_circle'
+]
+app_data = app_data.drop(*to_drop)
 
 # spark.sql("SELECT COUNT(1) FROM app_data WHERE obs_30_cnt_social_circle IS NULL;").show()
 
