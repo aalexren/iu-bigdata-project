@@ -153,7 +153,7 @@ print("Area under ROC curve on test data Logistic Regression = %g" % roc)
 pr = pr_evaluator.evaluate(predictions)
 print("Area under PR curve on test data Logistic regression = %g" % pr)
 
-lr_best_model = cvModel.bestmodel
+lr_best_model = cvModel.bestModel
 lr_best_model.save("models/lr")
 
 predictions.coalesce(1).select("prediction", "label").write.mode("overwrite").format(
@@ -194,7 +194,7 @@ print("Area under ROC on test data Decision Tree Classifier = %g" % roc)
 pr = pr_evaluator.evaluate(predictions)
 print("Area under PR on test data Decision Tree Classifier = %g" % pr)
 
-dt_best_model = cvModel.bestmodel
+dt_best_model = cvModel.bestModel
 dt_best_model.save("models/dt")
 
 predictions.coalesce(1).select("prediction", "label").write.mode("overwrite").format(
