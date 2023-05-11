@@ -13,6 +13,7 @@ from pyspark.ml.classification import LogisticRegression, DecisionTreeClassifier
 
 spark = SparkSession.builder\
         .appName("BDT Project")\
+        .master("local[*]")\
         .config("spark.sql.catalogImplementation","hive")\
         .config("hive.metastore.uris", "thrift://sandbox-hdp.hortonworks.com:9083")\
         .config("spark.sql.avro.compression.codec", "snappy")\
@@ -33,6 +34,9 @@ prev_app = spark.read.format("avro").table("projectdb.previous_application")
 prev_app.createOrReplaceTempView("prev_app")
 
 spark.sql("SELECT COUNT(1) FROM app_data WHERE obs_30_cnt_social_circle IS NULL;").show()
+
+app_data.printSchema()
+prev_app.printSchema()
 
 categorical_features = [
     "name_contract_type",
